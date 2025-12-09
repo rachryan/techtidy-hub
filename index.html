@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- BASIC META -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TechTidy — Declutter Your Tech. Reclaim Your Calm.</title>
+  <meta name="description" content="TechTidy helps everyday users and small businesses clean up their tech, feel safer online, and gain confidence with Microsoft, Google, browsers, security, AI tools, and cloud storage." />
+
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- SIMPLE INLINE FAVICON -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect rx='8' ry='8' width='32' height='32' fill='%237c5cff'/%3E%3Cpath d='M9 11h14v3H9zm0 6h9v3H9z' fill='white'/%3E%3C/svg%3E">
+
+  <!-- STYLES -->
+  <style>
+    :root {
+      --bg: #f6f5fb;
+      --bg-alt: #ffffff;
+      --text: #16161d;
+      --muted: #63677a;
+      --accent1: #7c5cff;
+      --accent2: #32c6c2;
+      --danger: #ff6b6b;
+      --border: #e1e3ee;
+      --shadow-soft: 0 18px 45px rgba(18, 20, 38, 0.12);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(800px 600px at 0% 0%, rgba(124, 92, 255, 0.12), transparent 60%),
+        radial-gradient(900px 700px at 100% 20%, rgba(50, 198, 194, 0.18), transparent 70%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent1);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(1100px, 92vw);
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(246, 245, 251, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(225, 227, 238, 0.7);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      box-shadow: var(--shadow-soft);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+    }
+
+    nav a {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      color: #ffffff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    main {
+      padding-bottom: 40px;
+    }
+
+    section {
+      padding: 48px 0;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 10px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: clamp(24px, 3vw, 32px);
+    }
+
+    h3 {
+      font-size: 18px;
+    }
+
+    .kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .sub {
+      color: var(--muted);
+      max-width: 60ch;
+      font-size: 15px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--muted);
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent2);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    .span-4 {
+      grid-column: span 4;
+    }
+    .span-6 {
+      grid-column: span 6;
+    }
+    .span-12 {
+      grid-column: 1 / -1;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 18px 18px 16px;
+      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+    }
+
+    .price {
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .price span {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    ul.clean {
+      list-style: none;
+      padding-left: 0;
+      margin: 8px 0 0;
+      font-size: 14px;
+    }
+
+    ul.clean li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    ul.clean li::before {
+      content: "•";
+      color: var(--accent1);
+      font-weight: 700;
+      margin-top: 0;
+    }
+
+    .before-after {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .ba-column {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .ba-heading {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(246, 245, 251, 0.8);
+      color: var(--muted);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .step-number {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      color: #ffffff;
+      margin-right: 6px;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .list-plain {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+    }
+
+    .list-plain li {
+      margin-bottom: 5px;
+    }
+
+    .avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    .quote {
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .pill-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* FORM */
+    form {
+      display: grid;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    label {
+      font-weight: 500;
+      font-size: 13px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 9px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-family: inherit;
+      font-size: 14px;
+      background: #ffffff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(225, 227, 238, 0.9);
+      padding: 20px 0 26px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+
+      .span-4, .span-6, .span-12 {
+        grid-column: 1 / -1;
+      }
+
+      .before-after {
+        grid-template-columns: 1fr;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <!-- SCHEMA.ORG -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "TechTidy",
+    "description": "TechTidy helps everyday users and small businesses clean up their tech, feel safer online, and gain confidence with Microsoft, Google, browsers, security, AI tools, and cloud storage.",
+    "areaServed": "CA",
+    "founder": {
+      "@type": "Person",
+      "name": "Rach"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">TT</div>
+        <span>TechTidy</span>
+      </div>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#who">Who it’s for</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#packages">Packages</a></li>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact" class="btn-primary">Work with me</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECTION: HERO -->
+    <section id="top">
+      <div class="container">
+        <div class="grid" style="align-items: center; gap: 26px;">
+          <div class="span-6">
+            <div class="kicker">Digital calm for real humans</div>
+            <h1>Declutter your tech.<br>Reclaim your calm.</h1>
+            <p class="sub">
+              I help everyday users and small businesses feel confident online — from email and cloud storage to browsers, security, and AI tools — without the jargon or eye rolls.
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
+              <a href="#packages" class="btn-primary">Start my cleanup</a>
+              <a href="#resources" class="btn-ghost">Join the newsletter</a>
+            </div>
+            <p class="pill-note">
+              I work with the tools you already use: Microsoft 365, Google Workspace, Chrome/Edge, password managers, and AI tools like ChatGPT.
+            </p>
+          </div>
+          <div class="span-6">
+            <div class="card">
+              <div class="badge">
+                <span class="pill-dot"></span> Quick wins I deliver
+              </div>
+              <ul class="clean">
+                <li><strong>One home for your files</strong> — no more “Final_v7_REAL_THIS_ONE” chaos.</li>
+                <li><strong>Safer logins</strong> — password manager, 2FA, and backups you understand.</li>
+                <li><strong>Smarter workflows</strong> — using Microsoft/Google and AI tools without fear.</li>
+              </ul>
+              <p class="pill-note">
+                Start small: one 60-minute session can tidy up a whole area (email, files, passwords, or AI).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: WHO IT'S FOR -->
+    <section id="who">
+      <div class="container">
+        <h2>Who TechTidy is for</h2>
+        <p class="sub">
+          You’re smart and capable — you just never got a proper manual for the digital world. You might be a solo professional, a tiny team without IT, or “the tech person” by default at work or in your family.
+        </p>
+        <div class="before-after">
+          <div class="ba-column">
+            <div class="ba-heading">Before</div>
+            <ul class="list-plain">
+              <li>50 tabs open and still can’t find that file.</li>
+              <li>Passwords in notebooks, browsers, and your memory.</li>
+              <li>Afraid to click “Update” in case everything breaks.</li>
+              <li>AI tools feel exciting but overwhelming and risky.</li>
+            </ul>
+          </div>
+          <div class="ba-column">
+            <div class="ba-heading">After</div>
+            <ul class="list-plain">
+              <li>Clear structure: you know exactly where everything lives.</li>
+              <li>Safer logins and backups that don’t rely on luck.</li>
+              <li>Confident saying “Yes, I know how to do that” in Microsoft or Google.</li>
+              <li>AI tools working for you — not stressing you out.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Everyday users</span>
+          <span class="tag">Solo & tiny teams (0–10 staff)</span>
+          <span class="tag">No in-house IT</span>
+          <span class="tag">“I’m techy enough… but I want better.”</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: SERVICES -->
+    <section id="services">
+      <div class="container">
+        <h2>What we can tidy together</h2>
+        <p class="sub">
+          Pick one area or mix and match. Each focus area can be a one-off session or part of a deeper package.
+        </p>
+        <div class="grid" style="margin-top:16px;">
+          <div class="card span-6">
+            <h3>Microsoft Suite Mastery</h3>
+            <p class="muted">
+              Turn Word, Excel, Outlook, OneDrive, and Teams into tools that work for you — not against you. We’ll set up folders, sharing, and simple workflows you can repeat.
+            </p>
+          </div>
+          <div class="card span-6">
+            <h3>Google Workspace Confidence</h3>
+            <p class="muted">
+              Clean up Google Drive, Docs, Sheets, and Gmail. Clear naming, shared folders, and practical habits so you stop losing things in “My Drive vs Shared Drives.”
+            </p>
+          </div>
+          <div class="card span-6">
+            <h3>Browsers, Security & Passwords</h3>
+            <p class="muted">
+              Fewer tabs, safer logins, smarter syncing. We’ll set up a password manager, basic security hygiene, and a backup plan that doesn’t rely on crossing your fingers.
+            </p>
+          </div>
+          <div class="card span-6">
+            <h3>AI Tools for Humans</h3>
+            <p class="muted">
+              Learn how to use tools like ChatGPT and Copilot in everyday language. No hype — just real workflows, prompts, and guardrails so you feel in control.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: PACKAGES -->
+    <section id="packages">
+      <div class="container">
+        <h2>Packages & retainers</h2>
+        <p class="sub">
+          Start with a single cleanup or build a longer-term digital confidence plan. All sessions are 1-on-1, online, and tailored to your tools.
+        </p>
+        <div class="grid" style="margin-top:16px;">
+          <div class="card span-4">
+            <h3>Starter Cleanup</h3>
+            <p class="price">$99 <span>· one-time</span></p>
+            <ul class="clean">
+              <li>60-minute 1:1 session on Zoom or Teams.</li>
+              <li>Focus on ONE area (email, files, passwords, or browser).</li>
+              <li>Simple “do this next” checklist you can follow on your own.</li>
+            </ul>
+            <p class="pill-note">Perfect if you want a small but powerful win.</p>
+            <a href="#contact" class="btn-primary" style="margin-top:10px;">Book this</a>
+          </div>
+
+          <div class="card span-4">
+            <h3>Confidence Builder</h3>
+            <p class="price">$249 <span>· 3 sessions</span></p>
+            <ul class="clean">
+              <li>3 × 60-minute sessions over 4–6 weeks.</li>
+              <li>We tidy multiple areas (e.g. files, email, AI basics).</li>
+              <li>Personalized TechTidy plan + recap notes and templates.</li>
+              <li>Short email support between sessions for quick questions.</li>
+            </ul>
+            <p class="pill-note">Ideal if you’re serious about digital calm.</p>
+            <a href="#contact" class="btn-primary" style="margin-top:10px;">Book this</a>
+          </div>
+
+          <div class="card span-4">
+            <h3>Ongoing Support</h3>
+            <p class="price">from $99 <span>/ month</span></p>
+            <ul class="clean">
+              <li>Light monthly retainer for individuals or tiny teams.</li>
+              <li>Priority email questions + one 30-minute call each month.</li>
+              <li>Perfect for “we just need a tech grown-up on call.”</li>
+            </ul>
+            <p class="pill-note">Great for small businesses without IT.</p>
+            <a href="#contact" class="btn-primary" style="margin-top:10px;">Talk retainers</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: HOW IT WORKS -->
+    <section id="how">
+      <div class="container">
+        <h2>How working together actually feels</h2>
+        <p class="sub">
+          No shame. No “you should already know this.” Just clear explanations, shared screens, and repeatable systems you can run without me.
+        </p>
+        <div class="steps">
+          <div class="card">
+            <p><span class="step-number">1</span><strong>Book a quick call</strong></p>
+            <p class="muted">
+              You tell me where it hurts — inbox, files, passwords, cloud, AI overwhelm. We pick a starting point that moves the needle fastest.
+            </p>
+          </div>
+          <div class="card">
+            <p><span class="step-number">2</span><strong>Map your digital mess</strong></p>
+            <p class="muted">
+              Together we look at your current setup. I translate what’s going on into simple language and sketch a clear “from → to” map.
+            </p>
+          </div>
+          <div class="card">
+            <p><span class="step-number">3</span><strong>Clean up & build confidence</strong></p>
+            <p class="muted">
+              We tidy, rename, reorganize, and secure things in real time — with notes and checklists so you can keep going once the call ends.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: RESOURCES -->
+    <section id="resources">
+      <div class="container">
+        <h2>Resources & TechTidy Tips</h2>
+        <p class="sub">
+          Not ready to book yet? Start with small, steady improvements. Get one helpful email each week with simple tech habits, browser tricks, AI ideas, and security basics.
+        </p>
+        <div class="grid" style="margin-top:16px;">
+          <div class="card span-6">
+            <h3>TechTidy Tips Newsletter</h3>
+            <p class="muted">
+              One email per week. Zero spam, zero fluff. Just practical ways to feel calmer and more confident online.
+            </p>
+            <!-- Replace the href with your real newsletter signup URL later -->
+            <a href="#contact" class="btn-primary">Join TechTidy Tips</a>
+            <p class="hint">Don’t have a signup tool yet? For now, people can just mention “Newsletter” in the contact form.</p>
+          </div>
+          <div class="card span-6">
+            <h3>Free guide: 5 Quick Wins</h3>
+            <p class="muted">
+              Coming soon: a short, friendly guide called <strong>“5 Quick Wins to Declutter Your Digital Life.”</strong> Perfect if you want to taste TechTidy before we work together.
+            </p>
+            <p class="hint">
+              For now, mention “5 Quick Wins” in your message and I’ll send it once it’s ready.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: WHAT I DO / DON'T DO -->
+    <section id="boundaries">
+      <div class="container">
+        <h2>What I do — and what I don’t</h2>
+        <p class="sub">
+          I want you to know exactly where I’m the right fit — and when you might need someone else.
+        </p>
+        <div class="two-column">
+          <div class="card">
+            <h3>I’m great for…</h3>
+            <ul class="list-plain">
+              <li>Organizing files, email, and cloud storage so you can actually find things.</li>
+              <li>Setting up password managers, safer logins, and basic security hygiene.</li>
+              <li>Making Microsoft 365 and Google Workspace feel clear, not chaotic.</li>
+              <li>Teaching AI tools in plain language, with real-life workflows.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>I’m not the right fit for…</h3>
+            <ul class="list-plain">
+              <li>Repairing broken laptops, phones, or hardware.</li>
+              <li>Managing corporate servers, complex networks, or enterprise IT.</li>
+              <li>Anything shady: hacking, bypassing security, or breaking platform rules.</li>
+              <li>24/7 emergency support or “always on” monitoring.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: ABOUT -->
+    <section id="about">
+      <div class="container">
+        <h2>Meet Rach, your TechTidy guide</h2>
+        <div class="grid" style="margin-top:12px;align-items:center;gap:20px;">
+          <div class="span-6">
+            <div class="avatar" aria-hidden="true">R</div>
+            <p>
+              I’m Rach — a systems-minded tech translator who loves turning “I have no idea what I’m doing” into “I’ve got this.”
+            </p>
+            <p class="muted">
+              I’ve spent years helping people who don’t live and breathe tech set up clear, calm systems using the tools they already have: Microsoft 365, Google Workspace, browsers, password managers, and now AI.
+            </p>
+            <p class="muted">
+              My style is simple: no judgment, no jargon, and no over-engineering. Just honest guidance, shared screens, and practical steps you can repeat without me.
+            </p>
+          </div>
+          <div class="span-6">
+            <div class="card">
+              <h3>What clients often say after a call</h3>
+              <div class="testimonials">
+                <div>
+                  <p class="quote">“I finally know where my files live — and I’m not scared of deleting things anymore.”</p>
+                  <p class="muted">— Solo consultant</p>
+                </div>
+                <div>
+                  <p class="quote">“Our tiny team has structure now. We don’t need a full IT department — just this.”</p>
+                  <p class="muted">— Small non-profit</p>
+                </div>
+                <div>
+                  <p class="quote">“You explained AI in a way that made sense for my actual workday, not as a shiny toy.”</p>
+                  <p class="muted">— Freelancer</p>
+                </div>
+              </div>
+              <p class="pill-note">
+                Your version of “tidy” doesn’t have to look like anyone else’s — it just has to work for you.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <h2>Ready to feel calmer online?</h2>
+        <p class="sub">
+          Tell me a little about your current setup and what you’d love to change. I’ll get back to you with next steps and which option fits best.
+        </p>
+        <div class="grid" style="margin-top:16px;">
+          <div class="card span-6">
+            <h3>Start here</h3>
+            <!-- Netlify-ready contact form -->
+            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="contact" />
+              <p hidden>
+                <label>Don’t fill this out if you’re human:
+                  <input name="bot-field" />
+                </label>
+              </p>
+              <div>
+                <label for="name">Name</label><br>
+                <input id="name" name="name" required placeholder="Your name">
+              </div>
+              <div>
+                <label for="email">Email</label><br>
+                <input id="email" type="email" name="email" required placeholder="you@example.com">
+              </div>
+              <div>
+                <label for="message">What do you need help with?</label><br>
+                <textarea id="message" name="message" placeholder="e.g. Clean up my Google Drive and Gmail, set up a password manager, learn how to use AI for my small business…"></textarea>
+              </div>
+              <button type="submit" class="btn-primary">Send message</button>
+              <p class="hint">
+                Prefer email? Write to <a href="mailto:hello@techtidy.ca">hello@techtidy.ca</a> and mention “TechTidy site”.
+              </p>
+            </form>
+          </div>
+          <div class="card span-6">
+            <h3>What happens next</h3>
+            <ul class="list-plain">
+              <li>I reply within 2–3 business days with a quick recommendation.</li>
+              <li>If it’s a fit, we book your first session and I send a short prep checklist.</li>
+              <li>During our call, we tidy live on screen and capture simple steps you can repeat.</li>
+            </ul>
+            <p class="muted">
+              No long-term contracts, no pressure. Just the level of support that makes sense for where you are right now.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-row">
+      <div>© <span id="year"></span> TechTidy · Built with clarity, not chaos.</div>
+      <div class="footer-links">
+        <!-- Replace # with your actual profiles when ready -->
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MINIMAL JS -->
+  <script>
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var targetId = this.getAttribute('href');
+        if (targetId.length > 1) {
+          e.preventDefault();
+          var target = document.querySelector(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
